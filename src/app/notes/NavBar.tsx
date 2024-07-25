@@ -9,7 +9,10 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import AddNoteDialog from "@/components/AddEditNoteDialog";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
+import { dark } from "@clerk/themes";
+import { useTheme } from "next-themes";
 export default function NavBar() {
+  const { theme } = useTheme();
   const [showAddEditNoteDialog, setShowAddEditNoteDialog] = useState(false);
   return (
     <>
@@ -23,6 +26,7 @@ export default function NavBar() {
             <UserButton
               afterSignOutUrl="/"
               appearance={{
+                baseTheme: theme === "dark" ? dark : undefined,
                 elements: {
                   avatarBox: {
                     width: "2.5rem",
@@ -46,5 +50,3 @@ export default function NavBar() {
     </>
   );
 }
-
-// time 2:35:13
